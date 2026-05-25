@@ -1,0 +1,44 @@
+# Experiment 04: Single-shot baseline works under full observation
+# ================================================================
+# To make the PPO main results (exp05-07) meaningful, first show that the
+# single-shot baseline they compare against IS a strong reference: full
+# observation + properly designed multi-sine probe gives essentially
+# perfect diagnosis in moderate-to-high SNR and degrades gracefully.
+#
+# Hypothesis set: healthy + 9 node faults + 11 edge faults = 21 hypotheses.
+
+network_config: ../networks/benchmark_9node.yaml
+
+# Mixed hypothesis set
+hypotheses:
+  node_fault:
+    type: stiffness
+    severity: 0.8
+    node_indices: null         # null = all nodes
+  edge_fault:
+    new_weight: 5.0
+    # `edges` defaults to all 11 edges of the benchmark; override below
+    # to use a subset.
+    edges: null
+
+omega_grid:
+  low: -2
+  high: 2
+  num: 801
+
+probing:
+  top_k_peaks: 3
+  peak_prominence: 1.0e-4
+  peak_relative_thresh: 0.05
+  inv_detect_floor: 0.05
+  duration: 4.0
+  dt: 0.01
+  amp: 1.0
+
+noise:
+  snr_db_list: [40.0, 20.0, 10.0, 0.0]
+  n_mc: 200
+
+seed: 2025
+
+outdir: outputs/04_single_shot_baseline

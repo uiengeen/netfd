@@ -1,0 +1,40 @@
+# Experiment 02: Structural blindness
+# ===================================
+# Argument 1 - in single-shot diagnosis, the set of node faults that can
+# be correctly identified is bounded by reachable(fault) ∩ obs_set ≠ ∅.
+# Sweep observation sets of increasing size and show how accuracy grows.
+#
+# Diagnosis is noise-free (ideal) to isolate the structural effect.
+
+network_config: ../networks/benchmark_9node.yaml
+
+# Hypothesis set: healthy + node faults on each node
+fault:
+  type: stiffness            # one of: stiffness, damping
+  severity: 0.8
+
+# Observation set sweep (0-indexed; N(i+1) <-> index i).
+# Each entry is a (name, [obs_indices]) pair.
+observation_sweep:
+  - { name: "obs1={N2}",         indices: [1] }
+  - { name: "obs2={N2,N3,N4}",   indices: [1, 2, 3] }
+  - { name: "obs3={N2..N8}",     indices: [1, 2, 3, 4, 5, 6, 7] }
+  - { name: "obs4={N2..N9}",     indices: [1, 2, 3, 4, 5, 6, 7, 8] }
+
+# Frequency grid
+omega_grid:
+  low: -2
+  high: 2
+  num: 801
+
+# Probing
+probing:
+  top_k_peaks: 3
+  peak_prominence: 1.0e-4
+  peak_relative_thresh: 0.05
+  inv_detect_floor: 0.05
+  duration: 8.0
+  dt: 0.01
+  amp: 1.0
+
+outdir: outputs/02_blindness

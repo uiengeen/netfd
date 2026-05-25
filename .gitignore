@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Outputs (kept locally, not tracked)
+outputs/
+*.npz
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Optional: published figures live under docs/figures and ARE tracked.
+# Only ignore loose PNGs at the project root.
+/*.png

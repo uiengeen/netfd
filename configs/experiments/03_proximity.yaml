@@ -1,0 +1,72 @@
+# Experiment 03: Intrinsic proximity via symmetric edge faults
+# ============================================================
+# Argument 2 - when two edges are topologically symmetric AND their
+# adjacent nodes have near-identical dynamics, perturbing either edge
+# produces nearly identical responses. Single-shot diagnosis confuses
+# the symmetric pair regardless of probe design.
+#
+# Uses a VARIANT of the benchmark network in which N3 and N4 are made
+# nearly parameter-identical (wn3 = 5.0, wn4 = 5.0 + eps), so the
+# symmetric edge pairs (N2->N3, N2->N4) and (N3->N5, N4->N5) collide.
+
+# Inline network override (do NOT reuse benchmark_9node.yaml here):
+network:
+  name: nine_node_proximity_variant
+  nodes:
+    - {name: N1, wn: 3.0,  zeta: 0.15, gain: 1.0}
+    - {name: N2, wn: 4.0,  zeta: 0.12, gain: 1.0}
+    - {name: N3, wn: 5.0,  zeta: 0.10, gain: 1.0}    # paired with N4
+    - {name: N4, wn: 5.02, zeta: 0.10, gain: 1.0}    # eps = 0.02
+    - {name: N5, wn: 1.5,  zeta: 0.08, gain: 1.0}
+    - {name: N6, wn: 2.0,  zeta: 0.08, gain: 1.0}
+    - {name: N7, wn: 2.8,  zeta: 0.08, gain: 1.0}
+    - {name: N8, wn: 4.2,  zeta: 0.08, gain: 1.0}
+    - {name: N9, wn: 9.0,  zeta: 0.15, gain: 1.0}
+  edges:
+    - [0, 1, 1.0]
+    - [1, 2, 1.0]
+    - [1, 3, 1.0]
+    - [1, 6, 1.0]
+    - [1, 8, 1.0]
+    - [2, 4, 1.0]
+    - [3, 4, 1.0]
+    - [6, 4, 1.0]
+    - [4, 5, 1.0]
+    - [5, 7, 1.0]
+    - [7, 6, 1.0]
+  injection_nodes: [0]
+  observation_nodes: [1, 2, 3, 4, 5, 6, 7, 8]
+
+# Edge fault hypotheses: every edge perturbed under each "mode".
+# In the original experiment a single mode (halved) was used; both
+# halved (0.5) and doubled (2.0) are supported here.
+modes:
+  halved: 0.5
+  # doubled: 2.0
+
+# Symmetric edge pairs (highlighted in the confusion matrix).
+symmetric_pairs:
+  - [[1, 2], [1, 3]]   # N2->N3 vs N2->N4 (parallel fanout)
+  - [[2, 4], [3, 4]]   # N3->N5 vs N4->N5 (parallel fanin)
+
+omega_grid:
+  low: -2
+  high: 2
+  num: 801
+
+probing:
+  top_k_peaks: 3
+  peak_prominence: 1.0e-4
+  peak_relative_thresh: 0.05
+  inv_detect_floor: 0.05
+  duration: 8.0
+  dt: 0.01
+  amp: 1.0
+
+noise:
+  snr_db_list: [20.0, 10.0, 0.0]
+  n_mc: 200
+
+seed: 2025
+
+outdir: outputs/03_proximity

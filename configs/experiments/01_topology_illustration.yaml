@@ -1,0 +1,10 @@
+# Experiment 01: Topology illustration
+# =====================================
+# Render the canonical paper figures: the 9-node benchmark layout (plain
+# and annotated), its adjacency matrix, and the three fault-class schematic
+# diagrams on a 6-node mesh.
+
+network_config: ../networks/benchmark_9node.yaml
+
+outdir: outputs/01_topology
+dpi: 160
