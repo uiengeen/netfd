@@ -23,6 +23,12 @@ feedback, and isolated-spoke sub-structures.
 
 ---
 
+## Framework
+
+![Framework overview](docs/figures/framework.png)
+
+---
+
 ## Installation
 
 ```bash
