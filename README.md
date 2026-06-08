@@ -57,7 +57,7 @@ netfd/                          # Packages
 
 experiments/                    # Simulations
 configs/
-├── networks/        Topology YAMLs (e.g. benchmark_9node)
+├── networks/        Topology YAMLs
 └── experiments/     One YAML per experiment script
 ```
 
