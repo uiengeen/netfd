@@ -69,19 +69,19 @@ that load a YAML config, call into the library, and write outputs.
 
 ## Quick start
 
-Render the canonical topology figures (no training, ~5 seconds):
+Render the canonical topology figures:
 
 ```bash
 python experiments/01_topology_illustration.py
 ```
 
-Reproduce the structural-blindness argument (no training, ~30 seconds):
+Reproduce the structural-blindness argument :
 
 ```bash
 python experiments/02_blindness.py
 ```
 
-Run a quick PPO smoke test (~30 seconds CPU):
+Run a quick PPO smoke test:
 
 ```bash
 python experiments/05_ppo_node_fault.py \
@@ -89,8 +89,7 @@ python experiments/05_ppo_node_fault.py \
     --override noise.n_mc_eval=20
 ```
 
-Run a main PPO experiment with paper defaults (~10-30 minutes CPU,
-budget set in YAML):
+Run a main PPO experiment with paper defaults (budget set in YAML):
 
 ```bash
 python experiments/05_ppo_node_fault.py
@@ -113,17 +112,17 @@ Each script writes its outputs under `outputs/<experiment_name>/`, which
 is in `.gitignore`. Run them in order; nothing depends on a previous
 script's output.
 
-| Script | Paper claim | Time |
+| Script | Paper claim |
 |---|---|---|
-| `experiments/01_topology_illustration.py` | Fig 1: benchmark + fault classes | <1 min |
-| `experiments/02_blindness.py` | Argument 1: structural blindness | ~1 min |
-| `experiments/03_proximity.py` | Argument 2: intrinsic proximity | ~2 min |
-| `experiments/04_single_shot_baseline.py` | Single-shot reference is strong | ~5 min |
-| `experiments/05_ppo_node_fault.py` | Main result 1: node faults | ~20 min CPU |
-| `experiments/06_ppo_edge_fault.py` | Main result 2: edge faults | ~30 min CPU |
-| `experiments/07_ppo_mixed_fault.py` | Main result 3: mixed faults | ~50 min CPU |
+| `experiments/01_topology_illustration.py` | benchmark + fault classes |
+| `experiments/02_blindness.py` | structural blindness |
+| `experiments/03_proximity.py` | intrinsic proximity |
+| `experiments/04_single_shot_baseline.py` | Single-shot reference is strong |
+| `experiments/05_ppo_node_fault.py` | node faults |
+| `experiments/06_ppo_edge_fault.py` | edge faults |
+| `experiments/07_ppo_mixed_fault.py` | mixed faults |
 
-(Times for an 8-core CPU. PPO uses single-process rollout; see
+(Implemented on an 8-core CPU. PPO uses single-process rollout; see
 `PPOConfig.num_envs` for parallelism.)
 
 ---
@@ -159,7 +158,7 @@ ppo:
 Any scalar can be overridden from the CLI with `--override
 key.path=value`. Nested keys use dot notation.
 
-The 9-node benchmark network is referenced via
+The benchmark network is referenced via
 `configs/networks/benchmark_9node.yaml`. To define your own network,
 copy that file and edit the node parameters and edge list, or write an
 inline definition directly in an experiment YAML.
