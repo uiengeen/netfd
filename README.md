@@ -113,7 +113,7 @@ is in `.gitignore`. Run them in order; nothing depends on a previous
 script's output.
 
 | Script | Paper claim |
-|---|---|---|
+|---|---|
 | `experiments/01_topology_illustration.py` | benchmark + fault classes |
 | `experiments/02_blindness.py` | structural blindness |
 | `experiments/03_proximity.py` | intrinsic proximity |
