@@ -106,13 +106,13 @@ python experiments/05_ppo_node_fault.py \
 
 ---
 
-## Reproducing all paper figures
+## Reproducing all simulations
 
 Each script writes its outputs under `outputs/<experiment_name>/`, which
 is in `.gitignore`. Run them in order; nothing depends on a previous
 script's output.
 
-| Script | Paper claim |
+| Script | Simulations |
 |---|---|
 | `experiments/01_topology_illustration.py` | benchmark + fault classes |
 | `experiments/02_blindness.py` | structural blindness |
