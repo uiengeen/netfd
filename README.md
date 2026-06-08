@@ -39,8 +39,7 @@ pip install -e .
 
 `pip install -e .` exposes `netfd` as an importable package. The
 experiment scripts also work without installation via a `sys.path`
-bootstrap, so `python experiments/01_topology_illustration.py` is fine
-out of the box.
+bootstrap.
 
 Dependencies: `numpy`, `scipy`, `matplotlib`, `networkx`, `torch`, `PyYAML`.
 
