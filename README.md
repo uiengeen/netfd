@@ -48,14 +48,14 @@ Dependencies: `numpy`, `scipy`, `matplotlib`, `networkx`, `torch`, `PyYAML`.
 ## Layout
 
 ```
-netfd/                          # Importable package
+netfd/                          # Packages
 ├── systems/      Nodes, networks, closed-loop synthesis, ν-gap
 ├── diagnosis/    Single-shot probe design + frequency-weighted classifier
 ├── sequential/   AFD environment + PPO trainer + evaluator
 ├── viz/          Plotting (topology, frequency, time, confusion, training)
 └── io/           YAML config loaders + result I/O
 
-experiments/                    # One script per paper figure / result
+experiments/                    # Simulations
 configs/
 ├── networks/        Topology YAMLs (e.g. benchmark_9node)
 └── experiments/     One YAML per experiment script
