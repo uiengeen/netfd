@@ -25,6 +25,12 @@ feedback, and isolated-spoke sub-structures.
 
 ## Framework
 
+Offline Phase:
+
+![Offline phase](docs/figures/offline.png)
+
+Online Phase:
+
 ![Framework overview](docs/figures/framework.png)
 
 ---
